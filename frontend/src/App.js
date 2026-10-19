@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
-import CandidateList from './components/Candidatelist';
+import CandidateList from './components/CandidateList';
 import AddCandidate from './components/AddCandidate';
 
 function App() {
