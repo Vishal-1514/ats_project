@@ -16,11 +16,11 @@ function AddCandidate({ fetchCandidates, setActiveTab }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await fetch('http://localhost:5000/api/candidates', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
+      await fetch('https://ats-project-wfwm.onrender.com/api/candidates', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(formData)
+});
       fetchCandidates();
       setActiveTab('list'); // Redirect to candidate list
     } catch (error) {

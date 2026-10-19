@@ -6,11 +6,11 @@ function CandidateList({ candidates, fetchCandidates }) {
   // Handle stage change via dropdown
   const handleStageChange = async (id, newStage) => {
     try {
-      await fetch(`http://localhost:5000/api/candidates/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ stage: newStage })
-      });
+      await fetch(`https://ats-project-wfwm.onrender.com/api/candidates/${id}`, {
+  method: 'PUT',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ stage: newStage })
+});
       fetchCandidates();
     } catch (error) {
       console.error("Error updating stage:", error);
@@ -21,9 +21,9 @@ function CandidateList({ candidates, fetchCandidates }) {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this candidate?")) {
       try {
-        await fetch(`http://localhost:5000/api/candidates/${id}`, {
-          method: 'DELETE'
-        });
+        await fetch(`https://ats-project-wfwm.onrender.com/api/candidates/${id}`, {
+  method: 'DELETE'
+});
         fetchCandidates();
       } catch (error) {
         console.error("Error deleting candidate:", error);

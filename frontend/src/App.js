@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
-import CandidateList from './components/CandidateList';
+import CandidateList from './components/Candidatelist';
 import AddCandidate from './components/AddCandidate';
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
   // Fetch candidates from Backend API
   const fetchCandidates = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/candidates');
+      const response = await fetch('https://ats-project-wfwm.onrender.com/api/candidates');
       const data = await response.json();
       setCandidates(data);
     } catch (error) {
