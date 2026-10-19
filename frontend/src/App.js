@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import Navbar from './components/Navbar';
+import Dashboard from './components/Dashboard';
+import CandidateList from './components/CandidateList';
+import AddCandidate from './components/AddCandidate';
 
 function App() {
+  const [activeTab, setActiveTab] = useState('dashboard');
+  const [candidates, setCandidates] = useState([]);
+
+  // Fetch candidates from Backend API
+  const fetchCandidates = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/candidates');
+      const data = await response.json();
+      setCandidates(data);
+    } catch (error) {
+      console.error("Error fetching candidates:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCandidates();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
+
+      {activeTab === 'dashboard' && <Dashboard candidates={candidates} />}
+      {activeTab === 'list' && (
+        <CandidateList candidates={candidates} fetchCandidates={fetchCandidates} />
+      )}
+      {activeTab === 'add' && (
+        <AddCandidate fetchCandidates={fetchCandidates} setActiveTab={setActiveTab} />
+      )}
     </div>
   );
 }
